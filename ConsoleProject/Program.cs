@@ -6,47 +6,41 @@ using System.Threading.Tasks;
 
 namespace ConsoleProject
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            while(true)
+            while (true)
             {
-               Console.WriteLine("Digite S para sair ou um número para calcular o fatorial:");
-                string opcao = Console.ReadLine();
-                if (opcao == "s" || opcao == "S")
-                    break;
-                else
+                Console.WriteLine("Digite o nome do seu usuário:");
+                string usuario = Console.ReadLine();
+                Console.WriteLine("Digite a sua senha:");
+                string senha = "";
+                while (true)
                 {
-                    int valor = Convert.ToInt32(opcao);
-                    if (valor == 0)
-                        Console.WriteLine("0! = 1");
-                    else if (valor < 0)
-                        Console.WriteLine("Impossível calcular fatorial de número negativo");
+                    ConsoleKeyInfo tecla = Console.ReadKey(true);
+                    if (tecla.Key == ConsoleKey.Enter)
+                        break;
                     else
                     {
-                        int resultado = 1;
-                        Console.Write(valor + "! = ");
-                        for (int i = valor; i > 0; i--)
-                        {
-                            resultado *= i;
-                            if (i == 1)
-                            {
-                                Console.Write(i + " = " + resultado);
-                            }
-                            else
-                            {
-                                Console.Write(i + "x");
-                            }
-                        }
+                        senha += tecla.KeyChar;
                     }
-                    Console.WriteLine("Pressione qualquer tecla para continuar");
+                }
+                if (usuario == "Matheus" && senha == "12345")
+                {
+                    Console.WriteLine("Usuário logado com sucesso");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Usuário ou senha incorreto");
+                    Console.WriteLine("Pressione qualquer tecla ppara continuar");
                     Console.ReadKey();
                     Console.Clear();
                 }
-                    Console.WriteLine("Pressione qualquer tecla para finalizar");
-                Console.ReadKey();
             }
+            Console.WriteLine("Pressione qualquer tecla para sair");
+            Console.ReadKey();
         }
     }
 }
